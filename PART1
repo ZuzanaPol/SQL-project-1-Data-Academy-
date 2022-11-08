@@ -6,46 +6,43 @@ FROM czechia_price cp;
    
 CREATE OR REPLACE TABLE t_zuzana_polakova_project_SQL_primary_final AS (
 SELECT
-	cpc.name AS food_category, cp.value AS food_price,ib.code AS industry_code,
-	ib.name AS industry, cpay.value AS average_wages,
-	cpay.payroll_year,
-	DATE_FORMAT(cp.date_from, '%d.%m.%Y') AS price_measured_from,
-	DATE_FORMAT(cp.date_to, '%e. %M %Y') AS price_measured_to
+cp.id AS food_id, cp.category_code AS food_category, cp.value AS food_price, cp.date_from AS price_measured_from, cpc.name, cpc.price_value, cpc.price_unit, 
+cpay.id AS payroll_id, cpay.industry_branch_code, cpay.value AS average_wages, cpay.payroll_year
 FROM czechia_price AS cp
-JOIN czechia_payroll AS cpay
-	ON cpay.payroll_year = YEAR(cp.date_from)
-JOIN czechia_price_category AS cpc
-	ON cpc.code = cp.category_code
-JOIN czechia_payroll_industry_branch AS ib
-	ON ib.code = cpay.industry_branch_code
-WHERE cpay.value_type_code = 5958 And cp.region_code IS NULL);
+JOIN czechia_payroll cpay ON cpay.payroll_year = YEAR (date_from) 
+JOIN czechia_price_category cpc ON cp.category_code = cpc.code
+WHERE cpay.value_type_code = 5958 And cp.region_code IS NULL)
+;
 
 CREATE OR REPLACE INDEX i_czechia_payroll__value ON czechia_payroll(value);
 
-SELECT *
-FROM t_zuzana_polakova_project_SQL_primary_final;
-
-   
-SELECT min(payroll_year),max(payroll_year)
-FROM t_zuzana_polakova_project_sql_primary_final tzppspf  ;
-
-SELECT min(date_from),max(date_from)
-FROM czechia_price cp;
-
-SELECT average_wages,industry_code,industry, payroll_year
+SELECT average_wages, industry_branch_code, payroll_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf 
-WHERE industry_code = "A"
+WHERE  industry_branch_code = "A"
 GROUP BY payroll_year 
 ORDER BY payroll_year ;
 
-CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_year on t_zuzana_polakova_project_sql_primary_final(payroll_year);
-CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_industry_code on t_zuzana_polakova_project_sql_primary_final(industry_code);
+SELECT 
+    industry_branch_code, average_wages, payroll_year,
+payroll_year + 1 AS next_year
+FROM t_zuzana_polakova_project_sql_primary_final tzppspf;
 
-SELECT tzppspf.industry_code, tzppspf.industry, tzppspf.payroll_year, tzppspf2. payroll_year + 1 as year_prev,round( ( tzppspf.average_wages - tzppspf2.average_wages) / tzppspf2.average_wages * 100, 2 ) as wage_growth
+CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_year on t_zuzana_polakova_project_sql_primary_final(payroll_year);
+CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_industry_code on t_zuzana_polakova_project_sql_primary_final(industry_branch_code);
+
+DROP INDEX t_zuzana_polakova_project_sql_primary_final_industry_code on t_zuzana_polakova_project_sql_primary_final;
+
+CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_food_price on t_zuzana_polakova_project_sql_primary_final(food_price);
+CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_food_category on t_zuzana_polakova_project_sql_primary_final(food_category);
+
+SELECT *
+FROM t_zuzana_polakova_project_sql_primary_final tzppspf ;
+
+SELECT tzppspf.industry_branch_code, tzppspf.average_wages, tzppspf.payroll_year, tzppspf2. payroll_year + 1 as year_next,round( ( tzppspf.average_wages - tzppspf2.average_wages) / tzppspf2.average_wages * 100, 2 ) as wage_growth
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf  
 JOIN t_zuzana_polakova_project_sql_primary_final tzppspf2 
-    ON tzppspf.average_wages = tzppspf2.average_wages
+    ON tzppspf.payroll_id = tzppspf2.payroll_id
     AND tzppspf.payroll_year = tzppspf2. payroll_year + 1
-   WHERE tzppspf.industry_code = 'A';
-   
+    AND tzppspf.payroll_year < 2019;
+
   
