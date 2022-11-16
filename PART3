@@ -1,0 +1,12 @@
+-- Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší procentuální meziroční nárůst)?
+
+CREATE OR REPLACE TABLE t_food_category_with_year_of_measuring AS (
+SELECT food_category, name, YEAR (price_measured_from) AS year_price, food_price 
+FROM t_zuzana_polakova_project_sql_primary_final tzppspf);
+
+SELECT tfcwyom.food_category, tfcwyom.name, tfcwyom.year_price, tfcwyom2.year_price + 1 as year_prev, 
+round( (tfcwyom.food_price - tfcwyom2.food_price ) / tfcwyom2.food_price * 100, 2) AS price_growth_percent
+FROM t_food_category_with_year_of_measuring tfcwyom
+JOIN t_food_category_with_year_of_measuring tfcwyom2
+ON tfcwyom.food_category = tfcwyom2.food_category
+AND tfcwyom.year_price = tfcwyom2.year_price + 1 AND tfcwyom.year_price < 2019;
