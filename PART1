@@ -1,199 +1,188 @@
 
 CREATE OR REPLACE TABLE t_zuzana_polakova_project_SQL_primary_final AS (
 SELECT
-cp.id AS food_id, cp.category_code AS food_category, cp.value AS food_price, cp.date_from AS price_measured_from, cpc.name, cpc.price_value, cpc.price_unit, 
-cpay.id AS payroll_id, cpay.industry_branch_code, cpay.value AS average_wages, cpay.payroll_year, cpay.payroll_quarter
-FROM czechia_price AS cp
-JOIN czechia_payroll cpay ON cpay.payroll_year = YEAR (date_from) 
+cp.id AS food_id, cp.category_code AS food_category, cp.value AS food_price, cp.date_from AS price_measured_from, 
+cp.date_to AS price_measured_to, cpc.name, cpc.price_value, cpc.price_unit,
+cpay.id AS payroll_id, cpay.calculation_code, cpay.industry_branch_code, cpay.value AS value_wages, cpay.payroll_year, cpay.payroll_quarter
+FROM czechia_payroll AS cpay
+JOIN czechia_price cp
+ON cpay.payroll_year = YEAR (date_from) 
 JOIN czechia_price_category cpc ON cp.category_code = cpc.code
-WHERE cpay.value_type_code = 5958 AND cp.region_code IS NULL AND cpay.calculation_code = 100)
+WHERE cpay.value_type_code = 5958 AND cp.region_code IS NULL)
 ;
-
-CREATE OR REPLACE INDEX i_czechia_payroll__value ON czechia_payroll(value);
-
-
-CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_year on t_zuzana_polakova_project_sql_primary_final(payroll_year);
-CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_industry_code on t_zuzana_polakova_project_sql_primary_final(industry_branch_code);
-
-DROP INDEX t_zuzana_polakova_project_sql_primary_final_industry_code on t_zuzana_polakova_project_sql_primary_final;
-
-CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_food_price on t_zuzana_polakova_project_sql_primary_final(food_price);
-CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_food_category on t_zuzana_polakova_project_sql_primary_final(food_category);
 
 SELECT *
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf ;
---neproběhlý dotaz ani po zaindexování
-SELECT tzppspf.industry_branch_code, tzppspf.average_wages, tzppspf2.average_wages, tzppspf.payroll_year as year, tzppspf2. payroll_year + 1, round(tzppspf2.average_wages - tzppspf.average_wages) as wage_growth
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- neproběhlý dotaz ani po zaindexování
+SELECT tzppspf.industry_branch_code, tzppspf.value_wages, tzppspf2.value_wages, tzppspf.payroll_year as year, tzppspf2. payroll_year + 1, round(tzppspf2.value_wages - tzppspf.value_wages) as wage_growth
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf  
 JOIN t_zuzana_polakova_project_sql_primary_final tzppspf2 
     ON tzppspf.payroll_id = tzppspf2.payroll_id
-   AND tzppspf .payroll_year = tzppspf2.payroll_year  + 1;
-  
-
-
-
-SELECT SUM(average_wages) AS sum_of_quarter_wages_for_2006
-FROM t_zuzana_polakova_project_sql_primary_final tzppspf 
-WHERE industry_branch_code = "A";
+   AND tzppspf.payroll_year = tzppspf2.payroll_year  + 1;
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ CREATE OR REPLACE INDEX i_czechia_payroll__value ON czechia_payroll(value);
+CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_year on t_zuzana_polakova_project_sql_primary_final(payroll_year);
+CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_industry_code on t_zuzana_polakova_project_sql_primary_final(industry_branch_code);
+DROP INDEX t_zuzana_polakova_project_sql_primary_final_industry_code on t_zuzana_polakova_project_sql_primary_final;
+CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_food_price on t_zuzana_polakova_project_sql_primary_final(food_price);
+CREATE OR REPLACE INDEX t_zuzana_polakova_project_sql_primary_final_food_category on t_zuzana_polakova_project_sql_primary_final(food_category);
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE OR REPLACE TABLE t_result_table_branch_A AS(
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_A_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_A_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'A'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_A);
 
+SELECT*
+FROM t_result_table_branch_a trtba ;
+
 CREATE OR REPLACE TABLE t_result_table_branch_B AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_B_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_B_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'B'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_B);
 
 CREATE OR REPLACE TABLE t_result_table_branch_C AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_C_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_C_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'C'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_C);
 
 CREATE OR REPLACE TABLE t_result_table_branch_D AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_D_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_D_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'D'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_D);
 
 CREATE OR REPLACE TABLE t_result_table_branch_E AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_E_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_E_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'E'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_E);
 
 CREATE OR REPLACE TABLE t_result_table_branch_F AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_F_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_F_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'F'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_F);
 
 CREATE OR REPLACE TABLE t_result_table_branch_G AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_G_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_G_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'G'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_G);
 
 CREATE OR REPLACE TABLE t_result_table_branch_H AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_H_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_H_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'H'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_H);
 
 CREATE OR REPLACE TABLE t_result_table_branch_I AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_I_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_I_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'I'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_I);
 
 CREATE OR REPLACE TABLE t_result_table_branch_J AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_J_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_J_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'J'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_J);
 
 CREATE OR REPLACE TABLE t_result_table_branch_K AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_K_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_K_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'K'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_K);
 
 CREATE OR REPLACE TABLE t_result_table_branch_L AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_L_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_L_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'L'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_L);
 
 CREATE OR REPLACE TABLE t_result_table_branch_M AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_M_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_M_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'M'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_M);
 
 CREATE OR REPLACE TABLE t_result_table_branch_N AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_N_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_N_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'N'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_N);
 
 CREATE OR REPLACE TABLE t_result_table_branch_O AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_O_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_O_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'O'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_O);
 
 CREATE OR REPLACE TABLE t_result_table_branch_P AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_P_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_P_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'P'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_P);
 
 CREATE OR REPLACE TABLE t_result_table_branch_Q AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_Q_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_Q_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'Q'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_Q);
 
 CREATE OR REPLACE TABLE t_result_table_branch_R AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_R_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_R_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'R'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_R);
 
 CREATE OR REPLACE TABLE t_result_table_branch_S AS (
-SELECT payroll_year+1 AS year_of_difference, ROUND((average_wages_next_year-average_wages), 2) AS growth_of_wages_for_S_industry
+SELECT payroll_year+1 AS year_of_difference, ROUND((value_wages_next_year-value_wages), 2) AS growth_of_wages_for_S_industry
 FROM
-(SELECT average_wages, payroll_year, industry_branch_code, LEAD(average_wages) OVER (ORDER BY payroll_year) AS average_wages_next_year
+(SELECT value_wages, payroll_year, industry_branch_code, LEAD(value_wages) OVER (ORDER BY payroll_year) AS value_wages_next_year
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE industry_branch_code = 'S'
 GROUP BY payroll_year LIMIT 12)AS result_table_for_S);
-
-
-
-
-SELECT industry_branch_code
-from t_zuzana_polakova_project_sql_primary_final tzppspf 
-group by industry_branch_code ;
 
 
 SELECT trtba.year_of_difference, growth_of_wages_for_A_industry, growth_of_wages_for_B_industry, 
