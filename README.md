@@ -28,12 +28,14 @@ Z vytvořených tabulek pro jednotlivá odvětví je patrné, že průměrné mz
 2ndQUESTION: Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?
 
 Jako první srovnatelné období pro ceny a mzdy jsem si zvolila první čtvrtletí roku 2006 (1.Q 2006).
-V tomto období (1.Q 2006) byla průměrná hodnota všech mezd ve výši 19550,38 Kč, zatímco průměrná cena 1 kg chleba konzumního ve výši 14,74 Kč
-a průměrná cena 1 l mléka 14,24 Kč. Bylo tedy možné si koupit 1326,35 kg chleba a 1372,92 l mléka polotučného.
+V tomto období (1.Q 2006) byla průměrná hodnota všech mezd ve výši 19550,38 Kč, 
+zatímco průměrná cena 1 kg chleba konzumního ve výši 14,74 Kč a průměrná cena 1 l mléka 14,24 Kč. 
+Bylo tedy možné si koupit 1326,35 kg chleba a 1372,92 l mléka polotučného.
 
 Jako poslední srovnatelné období jsem si zvolila čtvrté čtvrtletí roku 2018 (4.Q 2018)
-V tomto období (4.Q 2018) byla prům. hodnota všech mezd ve výši 34452,2 Kč, zatímco průměrná cena 1 kg chleba byla 23,86 Kč a 
-průměrná cena mléka 19,48 Kč/l. Bylo tedy možné si koupit 1443,93 kg chleba a 1768,59 l mléka.
+V tomto období (4.Q 2018) byla prům. hodnota všech mezd ve výši 34452,2 Kč, 
+zatímco průměrná cena 1 kg chleba byla 23,86 Kč a průměrná cena mléka 19,48 Kč/l. 
+Bylo tedy možné si koupit 1443,93 kg chleba a 1768,59 l mléka.
 
 3rdQUESTION: Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší procentuální meziroční nárůst)?
 
