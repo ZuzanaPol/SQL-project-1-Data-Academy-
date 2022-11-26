@@ -48,19 +48,6 @@ poté tabulku procentního meziročního růstu cen za stejné období
 a jejich rozdílem jsem zjistila, že ve sledovaném období nebyl
 meziroční nárůst cen potravin výrazně vyšší než růst mezd (ětší než 10 %). Jen v roce 2009 je 9,98 %. 
 
-2009	-9.98	není významný nárůst cen oproti mzdám
-2018	-5.72	není významný nárůst cen oproti mzdám
-2016	-4.81	není významný nárůst cen oproti mzdám
-2015	-3.11	není významný nárůst cen oproti mzdám
-2014	-1.68	není významný nárůst cen oproti mzdám
-2008	-1.46	není významný nárůst cen oproti mzdám
-2007	-0.5	není významný nárůst cen oproti mzdám
-2010	-0.2	není významný nárůst cen oproti mzdám
-2011	1.18	není významný nárůst cen oproti mzdám
-2017	3.67	není významný nárůst cen oproti mzdám
-2012	3.93	není významný nárůst cen oproti mzdám
-2013	7.04	není významný nárůst cen oproti mzdám
-
 5thQUESTION:Má výška HDP vliv na změny ve mzdách a cenách potravin? 
 Neboli, pokud HDP vzroste výrazněji v jednom roce, projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?
 
