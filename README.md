@@ -43,8 +43,11 @@ Bylo tedy možné si koupit 1443,93 kg chleba a 1768,59 l mléka.
 
 4thQUESTION: Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
 
-Nejprve jsem si vytvořila tabulku procentního růstu mezd od roku 2006 do roku 2018, poté tabulku procentního meziročního růstu cen za stejné období 
-a jejich rozdílem jsem zjistila, že ve sledovaném období nebyl meziroční nárůst cen potravin výrazně vyšší než růst mezd (ětší než 10 %). Jen v roce 2009 je 9,98 %.
+Nejprve jsem si vytvořila tabulku procentního růstu mezd od roku 2006 do roku 2018, 
+poté tabulku procentního meziročního růstu cen za stejné období 
+a jejich rozdílem jsem zjistila, že ve sledovaném období nebyl
+meziroční nárůst cen potravin výrazně vyšší než růst mezd (ětší než 10 %). Jen v roce 2009 je 9,98 %. 
+
 2009	-9.98	není významný nárůst cen oproti mzdám
 2018	-5.72	není významný nárůst cen oproti mzdám
 2016	-4.81	není významný nárůst cen oproti mzdám
