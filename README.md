@@ -38,18 +38,31 @@ zatímco průměrná cena 1 kg chleba byla 23,86 Kč a průměrná cena mléka 1
 Bylo tedy možné si koupit 1443,93 kg chleba a 1768,59 l mléka.
 
 3rdQUESTION: Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší procentuální meziroční nárůst)?
+
 Za rok 2007 je nejnižší meziroční nárůst (% rozdíl oproti roku 2006) u kategorie potravin 117101 - Rajská jablka červená kulatá (-30,28 %).
+
 Za rok 2008 je nejnižší meziroční nárůst u kategorie potravin 117401 - Konzumní brambory (-23,55 %).
+
 Za rok 2009 je nejnižší meziroční nárůst u kategorie potravin 111602 - Těstoviny vaječné (-28,5 %).
+
 Za rok 2010 je nejnižší meziroční nárůst u kategorie potravin 111602 - Těstoviny vaječné (-13,62 %).
+
 Za rok 2011 je nejnižší meziroční nárůst u kategorie potravin 117101 - Rajská jablka červená kulatá (-28,19 %).
+
 Za rok 2012 je nejnižší meziroční nárůst u kategorie potravin 117401 - Konzumní brambory (-21,95 %).
+
 Za rok 2013 je nejnižší meziroční nárůst u kategorie potravin 114701 - Vejce slepičí čerstvá (-15.12 %).
+
 Za rok 2014 je nejnižší meziroční nárůst u kategorie potravin 117401 - Konzumní brambory (-20.14 %).
+
 Za rok 2015 je nejnižší meziroční nárůst u kategorie potravin 114501 - Eidamská cihla (-20.73 %).
+
 Za rok 2016 je nejnižší meziroční nárůst u kategorie potravin 111201 - Pšeničná mouka hladká (-12.39 %).
+
 Za rok 2017 je nejnižší meziroční nárůst u kategorie potravin 117106 - Mrkev (-18.98 %).
+
 Za rok 2018 je nejnižší meziroční nárůst u kategorie potravin 118101 - Cukr krystalový (-21.09 %).
+
 
 4thQUESTION: Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
 
