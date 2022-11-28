@@ -38,16 +38,32 @@ zatímco průměrná cena 1 kg chleba byla 23,86 Kč a průměrná cena mléka 1
 Bylo tedy možné si koupit 1443,93 kg chleba a 1768,59 l mléka.
 
 3rdQUESTION: Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší procentuální meziroční nárůst)?
-
-
+Za rok 2007 je nejnižší meziroční nárůst (% rozdíl oproti roku 2006) u kategorie potravin 117101 - Rajská jablka červená kulatá (-30,28 %).
+Za rok 2008 je nejnižší meziroční nárůst u kategorie potravin 117401 - Konzumní brambory (-23,55 %).
+Za rok 2009 je nejnižší meziroční nárůst u kategorie potravin 111602 - Těstoviny vaječné (-28,5 %).
+Za rok 2010 je nejnižší meziroční nárůst u kategorie potravin 111602 - Těstoviny vaječné (-13,62 %).
+Za rok 2011 je nejnižší meziroční nárůst u kategorie potravin 117101 - Rajská jablka červená kulatá (-28,19 %).
+Za rok 2012 je nejnižší meziroční nárůst u kategorie potravin 117401 - Konzumní brambory (-21,95 %).
+Za rok 2013 je nejnižší meziroční nárůst u kategorie potravin 114701 - Vejce slepičí čerstvá (-15.12 %).
+Za rok 2014 je nejnižší meziroční nárůst u kategorie potravin 117401 - Konzumní brambory (-20.14 %).
+Za rok 2015 je nejnižší meziroční nárůst u kategorie potravin 114501 - Eidamská cihla (-20.73 %).
+Za rok 2016 je nejnižší meziroční nárůst u kategorie potravin 111201 - Pšeničná mouka hladká (-12.39 %).
+Za rok 2017 je nejnižší meziroční nárůst u kategorie potravin 117106 - Mrkev (-18.98 %).
+Za rok 2018 je nejnižší meziroční nárůst u kategorie potravin 118101 - Cukr krystalový (-21.09 %).
 
 4thQUESTION: Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
 
 Nejprve jsem si vytvořila tabulku procentního růstu mezd od roku 2006 do roku 2018, 
 poté tabulku procentního meziročního růstu cen za stejné období 
 a jejich rozdílem jsem zjistila, že ve sledovaném období nebyl
-meziroční nárůst cen potravin výrazně vyšší než růst mezd (ětší než 10 %). Jen v roce 2009 je 9,98 %. 
+meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %). Jen v roce 2009 je 9,98 %. 
 
 5thQUESTION:Má výška HDP vliv na změny ve mzdách a cenách potravin? 
 Neboli, pokud HDP vzroste výrazněji v jednom roce, projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?
+
+Vytvořila jsem si druhou hlavní tabulku spojením tabulek countries a economies, abych porovnala růst HDP s cenami a mzdami, ale protože o cenách mám údaje
+jen za ČR, porovnávala jsem HDP a ceny a mzdy pouze v ČR.
+
+Na základě použití pomocných tabulek z minulých otázek (otázka 4) - tabulky pro meziroční % růst mezd a tabulky pro meziroční % růst cen a přidání tabulky pro meziroční procentní růst HDP v ČR za sledované období 2006 až 2018, jsem zjistila, že při významnějším růstu HDP (více než průměrný růst) v roce 2018 rostly výrazněji
+i mzdy a v letech 2007, 2008 a 2017 při výraznějším růstu HDP současně výrazněji vzrostly mzdy i ceny.
 
