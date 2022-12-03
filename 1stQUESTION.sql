@@ -1,3 +1,15 @@
+CREATE OR REPLACE TABLE t_zuzana_polakova_project_SQL_primary_final AS (
+SELECT
+cp.id AS food_id, cp.category_code AS food_category, cp.value AS food_price, cp.date_from AS price_measured_from, 
+cp.date_to AS price_measured_to, cpc.name, cpc.price_value, cpc.price_unit,
+cpay.id AS payroll_id, cpay.calculation_code, cpay.industry_branch_code, cpay.value AS value_wages, cpay.payroll_year, cpay.payroll_quarter
+FROM czechia_payroll AS cpay
+JOIN czechia_price cp
+ON cpay.payroll_year = YEAR (date_from) 
+JOIN czechia_price_category cpc ON cp.category_code = cpc.code
+WHERE cpay.value_type_code = 5958 AND cp.region_code IS NULL)
+;
+
 -- Industry branch code A 
 CREATE OR REPLACE TABLE t_wages_table_year__industry_A AS(
 SELECT payroll_year, industry_branch_code,
