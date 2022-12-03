@@ -9,15 +9,6 @@ JOIN economies e
 ON c.country=e.country
 WHERE continent='Europe'AND e.year BETWEEN '2006' AND '2018');
 
-SELECT *
-FROM t_zuzana_polakova_project_sql_secondary_final tzppssf ;
-
-SELECT*
-FROM t_result_table_wage_growth_percent ;
-
-SELECT*
-FROM t_result_table_price_growth_percent ;
-
 CREATE OR REPLACE TABLE t_result_table_GDP_growth_percent AS (
 SELECT year+1 AS year_of_difference, ROUND(((GDP_next_year-GDP)/GDP*100), 2) AS growth_of_GDP
 FROM
@@ -34,9 +25,6 @@ JOIN t_result_table_wage_growth_percent trtwgp
 ON trtggp.year_of_difference = trtwgp.year_of_difference 
 JOIN t_result_table_price_growth_percent trtpgp
 ON trtggp.year_of_difference = trtpgp.year_of_difference);
-
-SELECT*
-FROM t_gdp_comparing_prices_wages ;
 
 SELECT ROUND (AVG (growth_of_GDP), 2)
 FROM t_gdp_comparing_prices_wages;
