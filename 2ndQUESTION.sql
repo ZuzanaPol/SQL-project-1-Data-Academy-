@@ -25,7 +25,7 @@ SELECT payroll_id, ROUND(SUM(food_price) / COUNT(food_price), 2) AS average_pric
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE food_category IN (111301) AND price_measured_from BETWEEN '2006-01-01' AND '2006-03-31')
 SELECT
-ROUND (average_wage_first_Q_2006/ average_price_bread_for_first_quarter_2006, 2 ) as available_amount_of_bread_1stQ2006
+ROUND (average_wage_first_Q_2006/ average_price_bread_for_first_quarter_2006, 2 ) AS available_amount_of_bread_1stQ2006
 FROM average_wage_first_Q_2006_table wages
 JOIN average_price_bread_for_first_quarter_2006_table price
 ON wages.payroll_id=price.payroll_id;
@@ -58,7 +58,7 @@ SELECT payroll_id, ROUND(SUM(food_price) / COUNT(food_price), 2) AS average_pric
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE food_category IN (114201) AND price_measured_from BETWEEN '2006-01-01' AND '2006-03-31')
 SELECT
-ROUND (average_wage_first_Q_2006/ average_price_milk_for_first_quarter_2006, 2 ) as available_amount_of_milk_1stQ2006
+ROUND (average_wage_first_Q_2006/ average_price_milk_for_first_quarter_2006, 2 ) AS available_amount_of_milk_1stQ2006
 FROM average_wage_first_Q_2006_table wages
 JOIN average_price_milk_for_first_quarter_2006_table price
 ON wages.payroll_id=price.payroll_id;
@@ -80,7 +80,7 @@ SELECT payroll_id, ROUND(SUM(food_price) / COUNT(food_price), 2) AS average_pric
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE food_category IN (111301) AND price_measured_from BETWEEN '2018-10-01' AND '2018-12-31')
 SELECT
-ROUND (average_wage_last_Q_2018/ average_price_bread_for_last_quarter_2018, 2 ) as available_amount_of_bread_4thQ2018
+ROUND (average_wage_last_Q_2018/ average_price_bread_for_last_quarter_2018, 2 ) AS available_amount_of_bread_4thQ2018
 FROM average_wage_last_Q_2018_table wages2
 JOIN average_price_bread_for_last_quarter_2018_table price2
 ON wages2.payroll_id=price2.payroll_id;
@@ -96,7 +96,7 @@ SELECT payroll_id, ROUND(SUM(food_price) / COUNT(food_price), 2) AS average_pric
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE food_category IN (114201) AND price_measured_from BETWEEN '2018-10-01' AND '2018-12-31')
 SELECT
-ROUND (average_wage_last_Q_2018/ average_price_milk_for_last_quarter_2018, 2 ) as available_amount_of_milk_4thQ2018
+ROUND (average_wage_last_Q_2018/ average_price_milk_for_last_quarter_2018, 2 ) AS available_amount_of_milk_4thQ2018
 FROM average_wage_last_Q_2018_table wages2
 JOIN average_price_milk_for_last_quarter_2018_table price2
 ON wages2.payroll_id=price2.payroll_id;
