@@ -30,7 +30,7 @@ FROM average_wage_first_Q_2006_table wages
 JOIN average_price_bread_for_first_quarter_2006_table price
 ON wages.payroll_id=price.payroll_id;
 
--- výpočet pro mléko polotučné = 1372.92 l
+-- výpočet pro mléko polotučné
 
 SELECT*
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf 
@@ -69,7 +69,7 @@ SELECT round(AVG(value_wages),2 ) AS average_wage_last_Q_2018
 FROM t_zuzana_polakova_project_sql_primary_final tzppspft 
 WHERE payroll_quarter = 4 AND payroll_year = 2018 ;
 
--- výpočet pro chléb (kg) = 1443,93 kg za 4.Q 2018
+-- výpočet pro chléb (kg) za 4.Q 2018
 
 WITH average_wage_last_Q_2018_table AS (
 SELECT payroll_id, round(AVG(value_wages),2 ) AS average_wage_last_Q_2018
@@ -85,7 +85,7 @@ FROM average_wage_last_Q_2018_table wages2
 JOIN average_price_bread_for_last_quarter_2018_table price2
 ON wages2.payroll_id=price2.payroll_id;
 
--- výpočet pro mléko polotučné (l) = 1768,59 l mléka za 4.Q 2018
+-- výpočet pro mléko polotučné za 4.Q 2018
 
 WITH average_wage_last_Q_2018_table AS (
 SELECT payroll_id, round(AVG(value_wages),2 ) AS average_wage_last_Q_2018
