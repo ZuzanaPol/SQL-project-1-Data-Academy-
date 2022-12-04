@@ -1,4 +1,4 @@
--- Kter· kategorie potravin zdraûuje nejpomaleji (je u nÌ nejniûöÌ procentu·lnÌ meziroËnÌ n·r˘st)?
+-- Kter√° kategorie potravin zdra≈æuje nejpomaleji (je u n√≠ nejni≈æ≈°√≠ procentu√°ln√≠ meziroƒçn√≠ n√°r√πst)?
 
 CREATE OR REPLACE TABLE t_prices_year_category_111101 AS(
 SELECT food_category, price_measured_from, 
@@ -79,9 +79,6 @@ FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '111101');
 
-SELECT*
-FROM t_prices_year_category_111101 tpyc;
-
 CREATE OR REPLACE TABLE result_table_111101 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_111101
 FROM
@@ -93,7 +90,6 @@ LIMIT 12
 SELECT *
 FROM result_table_111101
 ORDER BY growth_of_prices_111101 ;
-
 
 CREATE OR REPLACE TABLE t_prices_year_category_111201 AS(
 SELECT food_category, price_measured_from, 
@@ -173,9 +169,6 @@ round(AVG(food_price),2 ) AS average_price
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '111201');
-
-SELECT*
-FROM t_prices_year_category_111201 tpyc;
 
 CREATE OR REPLACE TABLE result_table_111201 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_111201
@@ -268,9 +261,6 @@ FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '111301');
 
-SELECT*
-FROM t_prices_year_category_111301 tpyc;
-
 CREATE OR REPLACE TABLE result_table_111301 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_111301
 FROM
@@ -361,9 +351,6 @@ round(AVG(food_price),2 ) AS average_price
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '111303');
-
-SELECT*
-FROM t_prices_year_category_111303 tpyc;
 
 CREATE OR REPLACE TABLE result_table_111303 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_111303
@@ -456,9 +443,6 @@ FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '111602');
 
-SELECT*
-FROM t_prices_year_category_111602 tpyc;
-
 CREATE OR REPLACE TABLE result_table_111602 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_111602
 FROM
@@ -549,9 +533,6 @@ round(AVG(food_price),2 ) AS average_price
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '112101');
-
-SELECT*
-FROM t_prices_year_category_112101 tpyc;
 
 CREATE OR REPLACE TABLE result_table_112101 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_112101
@@ -644,9 +625,6 @@ FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '112201');
 
-SELECT*
-FROM t_prices_year_category_112201 tpyc;
-
 CREATE OR REPLACE TABLE result_table_112201 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_112201
 FROM
@@ -737,9 +715,6 @@ round(AVG(food_price),2 ) AS average_price
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '112401');
-
-SELECT*
-FROM t_prices_year_category_112401 tpyc;
 
 CREATE OR REPLACE TABLE result_table_112401 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_112401
@@ -832,9 +807,6 @@ FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '112704');
 
-SELECT*
-FROM t_prices_year_category_112704 tpyc;
-
 CREATE OR REPLACE TABLE result_table_112704 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_112704
 FROM
@@ -925,9 +897,6 @@ round(AVG(food_price),2 ) AS average_price
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '114201');
-
-SELECT*
-FROM t_prices_year_category_114201 tpyc;
 
 CREATE OR REPLACE TABLE result_table_114201 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_114201
@@ -1020,9 +989,6 @@ FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '114401');
 
-SELECT*
-FROM t_prices_year_category_114401 tpyc;
-
 CREATE OR REPLACE TABLE result_table_114401 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_114401
 FROM
@@ -1113,9 +1079,6 @@ round(AVG(food_price),2 ) AS average_price
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '114501');
-
-SELECT*
-FROM t_prices_year_category_114501 tpyc;
 
 CREATE OR REPLACE TABLE result_table_114501 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_114501
@@ -1208,9 +1171,6 @@ FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '114701');
 
-SELECT*
-FROM t_prices_year_category_114701 tpyc;
-
 CREATE OR REPLACE TABLE result_table_114701 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_114701
 FROM
@@ -1301,9 +1261,6 @@ round(AVG(food_price),2 ) AS average_price
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '115101');
-
-SELECT*
-FROM t_prices_year_category_115101 tpyc;
 
 CREATE OR REPLACE TABLE result_table_115101 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_115101
@@ -1396,9 +1353,6 @@ FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '115201');
 
-SELECT*
-FROM t_prices_year_category_115201 tpyc;
-
 CREATE OR REPLACE TABLE result_table_115201 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_115201
 FROM
@@ -1489,9 +1443,6 @@ round(AVG(food_price),2 ) AS average_price
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '116101');
-
-SELECT*
-FROM t_prices_year_category_116101 tpyc;
 
 CREATE OR REPLACE TABLE result_table_116101 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_116101
@@ -1584,9 +1535,6 @@ FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '116103');
 
-SELECT*
-FROM t_prices_year_category_116103 tpyc;
-
 CREATE OR REPLACE TABLE result_table_116103 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_116103
 FROM
@@ -1677,9 +1625,6 @@ round(AVG(food_price),2 ) AS average_price
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '116104');
-
-SELECT*
-FROM t_prices_year_category_116104 tpyc;
 
 CREATE OR REPLACE TABLE result_table_116104 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_116104
@@ -1772,9 +1717,6 @@ FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '117101');
 
-SELECT*
-FROM t_prices_year_category_117101 tpyc;
-
 CREATE OR REPLACE TABLE result_table_117101 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_117101
 FROM
@@ -1865,9 +1807,6 @@ round(AVG(food_price),2 ) AS average_price
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE price_measured_from BETWEEN '2018-01-01' AND '2018-12-31'
 AND food_category = '117103');
-
-SELECT*
-FROM t_prices_year_category_117103 tpyc;
 
 CREATE OR REPLACE TABLE result_table_117103 AS (
 SELECT price_year+1 AS year_of_difference, ROUND(((average_price_next_year-average_price)/average_price*100), 2) AS growth_of_prices_117103
@@ -2516,7 +2455,7 @@ LIMIT 12
 
 SELECT *
 FROM result_table_2000001
-ORDER BY growth_of_prices_2000001 ;¬®
+ORDER BY growth_of_prices_2000001 ;√Ç¬®
 
 SELECT*
 FROM t_growth_of_prices_for_category;
