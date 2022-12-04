@@ -1,3 +1,4 @@
+Question 4: Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
 
 CREATE OR REPLACE TABLE t_wages_table_year AS(
 SELECT payroll_id, payroll_year, 
@@ -53,9 +54,6 @@ SELECT payroll_id, payroll_year, round(AVG(value_wages),2 ) AS average_wage_2018
 FROM t_zuzana_polakova_project_sql_primary_final tzppspf
 WHERE payroll_year = 2018);
 
-SELECT *
-FROM t_wages_table_year twty  ;
-
 
 CREATE OR REPLACE TABLE t_result_table_wage_growth_percent AS (
 SELECT payroll_year+1 AS year_of_difference, ROUND(((average_wage_next_year-average_wage)/average_wage*100), 2) AS growth_of_wages
@@ -65,16 +63,8 @@ FROM  t_wages_table_year twty
 LIMIT 12
 )AS result_table_wages);
 
-SELECT *
-FROM t_result_table_wage_growth_percent;
 
 -- PRO CENY--
-
-SELECT food_id, price_measured_from, 
-round(AVG(food_price),2 ) AS average_price
-FROM t_zuzana_polakova_project_sql_primary_final tzppspf
-WHERE price_measured_from BETWEEN '2006-01-01' AND '2006-12-31';
-
 
 CREATE OR REPLACE TABLE t_prices_table_year AS(
 SELECT food_id, price_measured_from, 
@@ -162,9 +152,6 @@ SELECT tpty.year_of_difference, ROUND (growth_of_prices-growth_of_wages, 2 ) AS 
 FROM t_result_table_price_growth_percent tpty
 JOIN t_result_table_wage_growth_percent trtwgp 
 ON tpty.year_of_difference=trtwgp.year_of_difference);
-
-SELECT *
-FROM t_comparing_table tct ;
 
 SELECT
 	year_of_difference, prices_wages_growth,
